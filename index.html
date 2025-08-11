@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 14px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+        .positive { color: green; }
+        .negative { color: red; }
+        .neutral { color: orange; }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis</h1>
+    <form method="POST">
+        <label>Enter text to analyze:</label>
+        <textarea name="user_text">{{ text }}</textarea>
+        <br>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if sentiment %}
+    <div class="result">
+        <p>Sentiment: 
+            <strong class="{{ sentiment|lower }}">{{ sentiment }}</strong>
+        </p>
+        <p>Polarity Score: {{ polarity }}</p>
+        <p>Subjectivity Score: {{ subjectivity }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
